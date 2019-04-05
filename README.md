@@ -5,6 +5,6 @@ Class diagram:
 ![Alt text](class_diagram.jpg?raw=true "Title")
 Screen Mockups:
 <br>
-<img src="screen1.jfif" width="200px">
-<img src="screen2.jfif" width="200px">
-<img src="screen3.jfif" width="200px">
+<img src="screen1.jfif" width="300px">
+<img src="screen2.jfif" width="300px">
+<img src="screen3.jfif" width="300px">
