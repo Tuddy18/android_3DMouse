@@ -71,15 +71,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     //Pressed
-                    MainActivity.drawing = true;
+                    pointerRecorder.setIsMoving(true);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     // Released
-                    MainActivity.drawing = false;
+                    pointerRecorder.setIsMoving(false);
                 }
                 return true;
             }
         });
-
 
         final TextView accText = findViewById(R.id.acc_text);
         accText.setTextColor(Color.LTGRAY);
