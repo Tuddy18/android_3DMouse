@@ -39,6 +39,9 @@ public class CommandReceiver {
             });
             thread.start();
         }
+        else{
+            throw new NullPointerException("Executor not ninitialized");
+        }
     }
 
     public void stop(){
