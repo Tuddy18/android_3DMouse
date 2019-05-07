@@ -41,4 +41,13 @@ public class Command {
     public void setColor(String color) {
         this.color = color;
     }
+
+    @Override
+    public String toString() {
+        return "Command{" +
+                "position=" + position +
+                ", commandType=" + commandType +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }
