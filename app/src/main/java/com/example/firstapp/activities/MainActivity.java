@@ -1,13 +1,9 @@
 package com.example.firstapp.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,15 +18,34 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.firstapp.R;
+import com.example.firstapp.execution.BufferManager;
+import com.example.firstapp.interfaces.IBufferManager;
+import com.example.firstapp.interfaces.IPointerRecorder;
+import com.example.firstapp.interfaces.IPointerSettings;
+import com.example.firstapp.pointer.AcceleratorEventListener;
+import com.example.firstapp.pointer.PointerRecorder;
 
 public class MainActivity extends AppCompatActivity {
 
     public static boolean drawing = false;
+    private IPointerSettings pointerSettings;
+    private IBufferManager bufferManager;
+    private IPointerRecorder pointerRecorder;
+    private SensorEventListener acceleratorEventListener;
 
+
+    private void init() {
+        pointerSettings = new PointerSettings();
+        pointerRecorder = new PointerRecorder(pointerSettings, bufferManager);
+        acceleratorEventListener = new AcceleratorEventListener(pointerSettings, pointerRecorder);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        init();
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,16 +80,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final SeekBar slider = findViewById(R.id.slider);
-        slider.setMax(50);
 
         final TextView accText = findViewById(R.id.acc_text);
         accText.setTextColor(Color.LTGRAY);
         accText.setTextSize(16);
 
+        /*accText.setText(pointerRecorder.getCurrentPosition().getX() + " " +
+                pointerRecorder.getCurrentPosition().getY() + " " +
+                pointerRecorder.getCurrentPosition().getZ());*/
+        accText.setText("hola");
+
         Button repositionButton = findViewById(R.id.reposition);
         repositionButton.setBackground(rounded);
         repositionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        Button draw = findViewById(R.id.draw);
+        draw.setBackground(rounded);
+        draw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }

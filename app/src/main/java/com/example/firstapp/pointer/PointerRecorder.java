@@ -57,6 +57,11 @@ public class PointerRecorder implements IPointerRecorder {
         bufferManager.addCommand(command);
     }
 
+    @Override
+    public Position getCurrentPosition() {
+        return null;
+    }
+
     protected Command createCommand(double x, double y, double z, CommandType type, String color){
         Position p = new Position(x, y, z);
         Command command = new Command(p, type, color);
