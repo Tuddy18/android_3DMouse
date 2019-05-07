@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">3D Mouse</string>
+    <string name="app_name">3D Draw</string>
     <string name="action_settings">Settings</string>
+    <string name="action_about">About</string>
+    <color name="brown">#3B2527</color>
+    <color name="lightBrown">#B49895</color>
+    <color name="white">#ffff</color>
+    <color name="beige">#c4dad8</color>
+    <color name="black">#123</color>
 </resources>
