@@ -31,8 +31,10 @@ public class CommandReceiver {
                 public void run() {
                     while(!stop){
                         synchronized (BufferManager.getInstance().getBufferLock()){
-                            Command command = BufferManager.getInstance().getBuffer().poll();
-                            executor.execute(command);
+                            if(!BufferManager.getInstance().getBuffer().isEmpty()){
+                                Command command = BufferManager.getInstance().getBuffer().poll();
+                                executor.execute(command);
+                            }
                         }
                     }
                 }
