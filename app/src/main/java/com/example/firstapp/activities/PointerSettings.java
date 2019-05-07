@@ -10,7 +10,7 @@ public class PointerSettings implements IPointerSettings {
 
     @Override
     public String getColor() {
-        return null;
+        return color;
     }
 
     @Override
