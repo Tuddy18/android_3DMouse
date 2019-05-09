@@ -14,9 +14,10 @@ public class SettingsActivity extends AppCompatActivity{
 
     private IPointerSettings pointerSettings;
 
-    public SettingsActivity(IPointerSettings pointerSettings) {
-        this.pointerSettings = new PointerSettings();
+    public SettingsActivity() {}
 
+    public SettingsActivity(IPointerSettings pointerSettings) {
+        this.pointerSettings = pointerSettings;
     }
 
 
