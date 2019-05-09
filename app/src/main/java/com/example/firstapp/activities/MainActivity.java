@@ -1,5 +1,6 @@
 package com.example.firstapp.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -34,6 +35,8 @@ import com.example.firstapp.pointer.AcceleratorEventListener;
 import com.example.firstapp.pointer.PointerRecorder;
 
 import java.io.IOException;
+
+import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -12,4 +12,10 @@ public interface IPointerSettings {
     void setSensibility(double sensibility);
 
     void setGranularity(double granularity);
+
+    int getDefaultColorR();
+
+    int getDefaultColorG();
+
+    int getDefaultColorB();
 }

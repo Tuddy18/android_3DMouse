@@ -2,6 +2,7 @@ package com.example.firstapp.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.SeekBar;
@@ -10,21 +11,30 @@ import android.widget.TextView;
 import com.example.firstapp.R;
 import com.example.firstapp.interfaces.IPointerSettings;
 
+import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
+import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
+
 public class SettingsActivity extends AppCompatActivity{
 
     private IPointerSettings pointerSettings;
 
-    public SettingsActivity() {}
+    final ColorPicker cp;
+
+    public SettingsActivity() {
+        this.cp = new ColorPicker(SettingsActivity.this, 0, 0, 0);
+    }
 
     public SettingsActivity(IPointerSettings pointerSettings) {
         this.pointerSettings = pointerSettings;
+        this.cp = new ColorPicker(SettingsActivity.this, pointerSettings.getDefaultColorR(),
+                pointerSettings.getDefaultColorG(), pointerSettings.getDefaultColorB());
     }
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initColorPicker();
 
         setContentView(R.layout.settings);
         Toolbar toolbar = findViewById(R.id.toolbar2);
@@ -116,6 +126,32 @@ public class SettingsActivity extends AppCompatActivity{
             }
         });
 
+    }
+
+    private void initColorPicker() {
+        /* Show color picker dialog */
+        cp.show();
+
+        cp.enableAutoClose(); // Enable auto-dismiss for the dialog
+
+        /* Set a new Listener called when user click "select" */
+        cp.setCallback(new ColorPickerCallback() {
+            @Override
+            public void onColorChosen(@ColorInt int color) {
+
+                //"Red", Integer.toString(Color.red(color))
+                //"Green", Integer.toString(Color.green(color))
+                //"Blue", Integer.toString(Color.blue(color))
+                //"Pure Hex", Integer.toHexString(color)
+                //"#Hex no alpha", String.format("#%06X", (0xFFFFFF & color))
+                //"#Hex with alpha", String.format("#%08X", (0xFFFFFFFF & color))
+
+                pointerSettings.setColor(Integer.toHexString(color));
+
+                // If the auto-dismiss option is not enable (disabled as default) you have to manually dismiss the dialog
+                // cp.dismiss();
+            }
+        });
     }
 
 }
