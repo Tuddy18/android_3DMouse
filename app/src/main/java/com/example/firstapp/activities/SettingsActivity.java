@@ -18,7 +18,7 @@ public class SettingsActivity extends AppCompatActivity{
 
     private IPointerSettings pointerSettings;
 
-    final ColorPicker cp;
+    ColorPicker cp;
 
     public SettingsActivity() {
         this.cp = new ColorPicker(SettingsActivity.this, 0, 0, 0);
@@ -26,8 +26,7 @@ public class SettingsActivity extends AppCompatActivity{
 
     public SettingsActivity(IPointerSettings pointerSettings) {
         this.pointerSettings = pointerSettings;
-        this.cp = new ColorPicker(SettingsActivity.this, pointerSettings.getDefaultColorR(),
-                pointerSettings.getDefaultColorG(), pointerSettings.getDefaultColorB());
+
     }
     
     @Override
@@ -130,6 +129,8 @@ public class SettingsActivity extends AppCompatActivity{
 
     private void initColorPicker() {
         /* Show color picker dialog */
+        this.cp = new ColorPicker(SettingsActivity.this, pointerSettings.getDefaultColorR(),
+                pointerSettings.getDefaultColorG(), pointerSettings.getDefaultColorB());
         cp.show();
 
         cp.enableAutoClose(); // Enable auto-dismiss for the dialog

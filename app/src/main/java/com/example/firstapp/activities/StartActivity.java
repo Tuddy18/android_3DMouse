@@ -91,12 +91,8 @@ public class StartActivity extends AppCompatActivity {
                 HashMap<String, String> item = (HashMap<String, String>) parent.getItemAtPosition(position);
                 String address = item.get("Second line");
 
-                try {
-                    btConnection.connect(address);
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                //                    btConnection.connect(address);
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 stopProgressThread();
             }
         });

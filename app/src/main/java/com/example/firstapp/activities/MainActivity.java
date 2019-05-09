@@ -1,6 +1,5 @@
 package com.example.firstapp.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -12,31 +11,20 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.firstapp.R;
-import com.example.firstapp.bt.BTConnection;
-import com.example.firstapp.command.Command;
 import com.example.firstapp.execution.BufferManager;
-import com.example.firstapp.execution.CommandExecutor;
-import com.example.firstapp.execution.CommandReceiver;
-import com.example.firstapp.interfaces.IBTConnection;
 import com.example.firstapp.interfaces.IBufferManager;
-import com.example.firstapp.interfaces.ICommandExecutor;
 import com.example.firstapp.interfaces.IPointerRecorder;
 import com.example.firstapp.interfaces.IPointerSettings;
 import com.example.firstapp.pointer.AcceleratorEventListener;
 import com.example.firstapp.pointer.PointerRecorder;
-
-import java.io.IOException;
-
-import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private SensorEventListener acceleratorEventListener;
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
+    TextView coordinates;
 
     public MainActivity(){
 
@@ -72,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
-        final TextView coordinates = findViewById(R.id.coordinates);
+        coordinates = findViewById(R.id.coordinates);
+        coordinates = new TextView(this);
         coordinates.setTextColor(Color.LTGRAY);
         coordinates.setTextSize(16);
 

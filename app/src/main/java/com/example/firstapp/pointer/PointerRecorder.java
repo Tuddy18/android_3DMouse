@@ -11,15 +11,20 @@ public class PointerRecorder implements IPointerRecorder {
     private boolean moving;
     private IPointerSettings pointerSettings;
     private IBufferManager bufferManager;
+    private Position position;
 
     public PointerRecorder(IPointerSettings pointerSettings, IBufferManager bufferManager) {
         this.pointerSettings = pointerSettings;
         this.bufferManager = bufferManager;
+        position = new Position(0, 0, 0);
     }
 
     @Override
     public void recordPosition(double x, double y, double z) {
         String color = pointerSettings.getColor();
+        position.setX(x);
+        position.setY(y);
+        position.setZ(z);
 
         if(isDrawing()){
             Command command = createCommand(x, y, z, CommandType.DRAW, color);
@@ -59,7 +64,7 @@ public class PointerRecorder implements IPointerRecorder {
 
     @Override
     public Position getCurrentPosition() {
-        return null;
+        return position;
     }
 
     protected Command createCommand(double x, double y, double z, CommandType type, String color){
