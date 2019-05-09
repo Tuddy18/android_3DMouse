@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -26,14 +28,12 @@ public class SettingsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         pointerSettings = PointerSettings.getInstance();
-        initColorPicker();
 
         setContentView(R.layout.settings);
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        final SeekBar colorSlider = findViewById(R.id.slider);
-        colorSlider.setMax(50);
+        Button colorButton = findViewById(R.id.color);
 
         final TextView sliderText = findViewById(R.id.sliderText);
 
@@ -41,26 +41,14 @@ public class SettingsActivity extends AppCompatActivity{
         sliderText.setTextSize(20);
         sliderText.setText("Color");
 
-        colorSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //pointerSettings.setColor(colorSlider.getProgress() / 10.0);
+        colorButton.setOnClickListener((new View.OnClickListener() {
 
-                pointerSettings.setColor("#f4426b");
-
+            public void onClick(View v) {
+                initColorPicker();
                 sliderText.setText("Color: " + pointerSettings.getColor());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        }));
 
         final SeekBar sensibilitySlider = findViewById(R.id.slider2);
         sensibilitySlider.setMax(50);
