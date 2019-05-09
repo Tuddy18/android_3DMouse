@@ -11,11 +11,6 @@ public class CommandExecutor implements ICommandExecutor {
 
     public CommandExecutor(IBTConnection btConnection) {
         this.btConnection = btConnection;
-        try {
-            btConnection.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

@@ -38,16 +38,17 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     public static boolean drawing = false;
+    private IPointerRecorder pointerRecorder;
+    private SettingsActivity settingsActivity;
     private IPointerSettings pointerSettings;
     private IBufferManager bufferManager;
-    private IPointerRecorder pointerRecorder;
     private SensorEventListener acceleratorEventListener;
-    private ICommandExecutor executor;
-    private IBTConnection btConnection;
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
-    private SettingsActivity settingsActivity;
 
+    public MainActivity(){
+
+    }
 
 
     private void init() {
@@ -58,16 +59,7 @@ public class MainActivity extends AppCompatActivity {
         pointerRecorder = new PointerRecorder(pointerSettings, BufferManager.getInstance());
         acceleratorEventListener = new AcceleratorEventListener(pointerSettings, pointerRecorder);
         mSensorManager.registerListener(acceleratorEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-
-
-        btConnection = new BTConnection();
-        executor = new CommandExecutor(btConnection);
-        CommandReceiver.getInstance().setExecutor(executor);
-        CommandReceiver.getInstance().start();
-
         settingsActivity = new SettingsActivity(pointerSettings);
-
-
 
     }
 
