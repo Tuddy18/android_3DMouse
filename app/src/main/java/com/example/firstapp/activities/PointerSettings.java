@@ -6,7 +6,7 @@ public class PointerSettings implements IPointerSettings {
 
     private String color = "#f4426b";
     private double sensibility = 0.8;
-    private double granularity = 0.8;
+    private double granularity = 1.0;
 
     @Override
     public String getColor() {

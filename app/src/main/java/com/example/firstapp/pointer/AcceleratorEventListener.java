@@ -44,16 +44,16 @@ public class AcceleratorEventListener implements SensorEventListener {
 
             if(pointerRecorder.isDrawing() || pointerRecorder.isMoving()){
                 velocityX = velocityX + diffTime * accelerationX * 0.001;
+                velocityX = velocityX * pointerSettings.getGranularity();
                 positionX = positionX + diffTime * velocityX * 100 * 0.001;
-                positionX = positionY * pointerSettings.getGranularity();
 
                 velocityY = velocityY + diffTime * accelerationY * 0.001;
+                velocityY = velocityY * pointerSettings.getGranularity();
                 positionY = positionY + diffTime * velocityY * 100 * 0.001;
-                positionY = positionY * pointerSettings.getGranularity();
 
                 velocityZ = velocityZ + diffTime * accelerationZ * 0.001;
+                velocityZ = velocityZ * pointerSettings.getGranularity();
                 positionZ = positionZ + diffTime * velocityZ * 100 * 0.001;
-                positionZ = positionZ * pointerSettings.getGranularity();
 
                 pointerRecorder.recordPosition(positionX, positionY, positionZ);
             }

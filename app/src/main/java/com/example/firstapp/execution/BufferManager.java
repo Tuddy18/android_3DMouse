@@ -3,6 +3,7 @@ package com.example.firstapp.execution;
 import com.example.firstapp.command.Command;
 import com.example.firstapp.interfaces.IBufferManager;
 
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class BufferManager implements IBufferManager {
@@ -11,7 +12,7 @@ public class BufferManager implements IBufferManager {
     private static IBufferManager instance;
 
     private BufferManager(){
-
+        buffer = new ArrayDeque<>();
     }
 
     public static IBufferManager getInstance(){
@@ -35,6 +36,9 @@ public class BufferManager implements IBufferManager {
 
     @Override
     public Object getBufferLock() {
+        if(lock == null){
+            lock = new Object();
+        }
         return lock;
     }
 }

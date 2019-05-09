@@ -3,7 +3,9 @@ package com.example.firstapp.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,12 +20,20 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.firstapp.R;
+import com.example.firstapp.bt.BTConnection;
+import com.example.firstapp.command.Command;
 import com.example.firstapp.execution.BufferManager;
+import com.example.firstapp.execution.CommandExecutor;
+import com.example.firstapp.execution.CommandReceiver;
+import com.example.firstapp.interfaces.IBTConnection;
 import com.example.firstapp.interfaces.IBufferManager;
+import com.example.firstapp.interfaces.ICommandExecutor;
 import com.example.firstapp.interfaces.IPointerRecorder;
 import com.example.firstapp.interfaces.IPointerSettings;
 import com.example.firstapp.pointer.AcceleratorEventListener;
 import com.example.firstapp.pointer.PointerRecorder;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,12 +42,27 @@ public class MainActivity extends AppCompatActivity {
     private IBufferManager bufferManager;
     private IPointerRecorder pointerRecorder;
     private SensorEventListener acceleratorEventListener;
+    private ICommandExecutor executor;
+    private IBTConnection btConnection;
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+
 
 
     private void init() {
+        mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+
         pointerSettings = new PointerSettings();
-        pointerRecorder = new PointerRecorder(pointerSettings, bufferManager);
+        pointerRecorder = new PointerRecorder(pointerSettings, BufferManager.getInstance());
         acceleratorEventListener = new AcceleratorEventListener(pointerSettings, pointerRecorder);
+        mSensorManager.registerListener(acceleratorEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+
+
+        btConnection = new BTConnection();
+        executor = new CommandExecutor(btConnection);
+        CommandReceiver.getInstance().setExecutor(executor);
+        CommandReceiver.getInstance().start();
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.example.firstapp.interfaces.IBTConnection;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
 public class BTConnection implements IBTConnection {
@@ -36,7 +37,17 @@ public class BTConnection implements IBTConnection {
                     Object[] devices = (Object []) bondedDevices.toArray();
                     BluetoothDevice device = (BluetoothDevice) devices[0]; //First device i guess...
                     ParcelUuid[] uuids = device.getUuids();
-                    BluetoothSocket socket = device.createRfcommSocketToServiceRecord(uuids[0].getUuid());
+//                    BluetoothSocket socket = device.createRfcommSocketToServiceRecord(uuids[0].getUuid());
+                    BluetoothSocket socket = null;
+                    try {
+                        socket = (BluetoothSocket) device.getClass().getMethod("createRfcommSocket", new Class[] {int.class}).invoke(device,8);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    }
                     socket.connect();
                     outputStream = socket.getOutputStream();
                 }
