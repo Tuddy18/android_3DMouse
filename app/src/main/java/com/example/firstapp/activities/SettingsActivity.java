@@ -14,11 +14,17 @@ public class SettingsActivity extends AppCompatActivity{
 
     private IPointerSettings pointerSettings;
 
+    public SettingsActivity() {}
+
+    public SettingsActivity(IPointerSettings pointerSettings) {
+        this.pointerSettings = pointerSettings;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        pointerSettings = new PointerSettings();
 
         setContentView(R.layout.settings);
         Toolbar toolbar = findViewById(R.id.toolbar2);

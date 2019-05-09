@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private IBTConnection btConnection;
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
+    private SettingsActivity settingsActivity;
 
 
 
@@ -63,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
         executor = new CommandExecutor(btConnection);
         CommandReceiver.getInstance().setExecutor(executor);
         CommandReceiver.getInstance().start();
+
+        settingsActivity = new SettingsActivity(pointerSettings);
+
+
+
     }
 
     @Override
@@ -70,6 +76,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         init();
+
+        /*final TextView textViewX = findViewById(R.id.textViewX);
+        textViewX.setTextColor(Color.LTGRAY);
+        textViewX.setTextSize(16);
+
+        final TextView textViewY = findViewById(R.id.textViewY);
+        textViewY.setTextColor(Color.LTGRAY);
+        textViewY.setTextSize(16);
+
+        final TextView textViewZ = findViewById(R.id.textViewZ);
+        textViewZ.setTextColor(Color.LTGRAY);
+        textViewZ.setTextSize(16);*/
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -89,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
         Drawable rounded = getResources().getDrawable(R.drawable.roundedbutton);
         positionButton.setBackground(rounded);
 
+        //textViewX.setText(pointerRecorder.getCurrentPosition().getX() + "");
+        //textViewY.setText(pointerRecorder.getCurrentPosition().getY() + "");
+        //textViewZ.setText(pointerRecorder.getCurrentPosition().getZ() + "");
 
 
         positionButton.setOnTouchListener(new View.OnTouchListener() {
@@ -105,14 +126,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final TextView accText = findViewById(R.id.acc_text);
-        accText.setTextColor(Color.LTGRAY);
-        accText.setTextSize(16);
-
         /*accText.setText(pointerRecorder.getCurrentPosition().getX() + " " +
                 pointerRecorder.getCurrentPosition().getY() + " " +
                 pointerRecorder.getCurrentPosition().getZ());*/
-        accText.setText("hola");
+        //textViewX.setText(pointerRecorder.getCurrentPosition().getX() + "");
 
         Button repositionButton = findViewById(R.id.reposition);
         repositionButton.setBackground(rounded);
@@ -155,7 +172,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);*/
 
         if(item.getItemId() == R.id.action_settings) {
-            startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+            startActivity(new Intent(getApplicationContext(), settingsActivity.getClass()));
+        } else if(item.getItemId() == R.id.action_about) {
+            startActivity(new Intent(getApplicationContext(), AboutActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
