@@ -10,4 +10,7 @@
     <color name="beige">#c4dad8</color>
     <color name="black">#123</color>
     <string name="about">Insert something about the app here.</string>
+    <string name="positionBtnText">Position</string>
+    <string name="repositionBtnText">Reposition</string>
+    <string name="drawBtnText">Draw</string>
 </resources>
