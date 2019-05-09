@@ -20,6 +20,8 @@ public class SettingsActivity extends AppCompatActivity{
 
     private IPointerSettings pointerSettings;
 
+    TextView sliderText;
+
     ColorPicker cp;
 
     
@@ -35,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity{
 
         Button colorButton = findViewById(R.id.color);
 
-        final TextView sliderText = findViewById(R.id.sliderText);
+        sliderText = findViewById(R.id.sliderText);
 
         sliderText.setTextColor(Color.LTGRAY);
         sliderText.setTextSize(20);
@@ -129,6 +131,7 @@ public class SettingsActivity extends AppCompatActivity{
                 //"#Hex with alpha", String.format("#%08X", (0xFFFFFFFF & color))
 
                 pointerSettings.setColor(Integer.toHexString(color));
+                sliderText.setText("Color: " + pointerSettings.getColor());
 
                 // If the auto-dismiss option is not enable (disabled as default) you have to manually dismiss the dialog
                 // cp.dismiss();
