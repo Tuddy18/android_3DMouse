@@ -58,7 +58,7 @@ public class PointerRecorder implements IPointerRecorder {
 
     @Override
     public void reposition() {
-        Command command = createCommand(0, 0, 0, CommandType.REPOSITION, "");
+        Command command = createCommand(0, 0, 0, CommandType.MOVE, "");
         bufferManager.addCommand(command);
     }
 
@@ -67,10 +67,17 @@ public class PointerRecorder implements IPointerRecorder {
         return position;
     }
 
+    @Override
+    public void clear() {
+        bufferManager.addCommand(createCommand(0, 0, 0, CommandType.CLEAR,
+                pointerSettings.getColor()));
+    }
+
     protected Command createCommand(double x, double y, double z, CommandType type, String color){
         Position p = new Position(x, y, z);
         Command command = new Command(p, type, color);
 
         return command;
     }
+
 }

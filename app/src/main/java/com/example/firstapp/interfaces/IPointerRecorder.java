@@ -11,4 +11,6 @@ public interface IPointerRecorder {
     void reposition();
 
     Position getCurrentPosition();
+
+    void clear();
 }

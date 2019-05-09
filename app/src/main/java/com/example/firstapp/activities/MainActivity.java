@@ -96,11 +96,52 @@ public class MainActivity extends AppCompatActivity {
         Button repositionButton = findViewById(R.id.reposition);
         repositionButton.setBackground(rounded);
 
+        repositionButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //Pressed
+                    pointerRecorder.reposition();
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Released
+                    //pointerRecorder.reposition();
+                }
+                return true;
+            }
+        });
+
         Button draw = findViewById(R.id.draw);
         draw.setBackground(rounded);
 
+        draw.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //Pressed
+                    pointerRecorder.setIsDrawing(true);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Released
+                    pointerRecorder.setIsDrawing(false);
+                }
+                return true;
+            }
+        });
+
         Button clear = findViewById(R.id.clear);
         clear.setBackground(rounded);
+
+        clear.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //Pressed
+                    //pointerRecorder.
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Released
+                }
+                return true;
+            }
+        });
 
 
     }
