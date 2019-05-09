@@ -25,7 +25,7 @@ public class SettingsActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        pointerSettings = (IPointerSettings) getIntent().getSerializableExtra("PointerSettings");
+        pointerSettings = PointerSettings.getInstance();
         initColorPicker();
 
         setContentView(R.layout.settings);

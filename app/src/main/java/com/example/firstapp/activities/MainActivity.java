@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
-        pointerSettings = new PointerSettings();
+        pointerSettings = PointerSettings.getInstance();
         pointerRecorder = new PointerRecorder(pointerSettings, BufferManager.getInstance());
         acceleratorEventListener = new AcceleratorEventListener(pointerSettings, pointerRecorder);
         mSensorManager.registerListener(acceleratorEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
@@ -69,15 +69,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
 
         Button positionButton = findViewById(R.id.position);
@@ -126,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(item.getItemId() == R.id.action_settings) {
             Intent intent = new Intent(getApplicationContext(), settingsActivity.getClass());
-            intent.putExtra("PointerSettings", pointerSettings);
             startActivity(intent);
         } else if(item.getItemId() == R.id.action_about) {
             startActivity(new Intent(getApplicationContext(), AboutActivity.class));

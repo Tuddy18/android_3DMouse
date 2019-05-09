@@ -8,10 +8,50 @@
     tools:context=".activities.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <Button
+        android:id="@+id/draw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="300dp"
+        android:text="@string/drawBtnText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="300dp"
+        android:text="@string/positionBtnText"
+        app:layout_constraintStart_toEndOf="@+id/draw"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/reposition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/repositionBtnText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/draw" />
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/clearBtnText"
+        app:layout_constraintStart_toEndOf="@+id/reposition"
+        app:layout_constraintTop_toBottomOf="@+id/position" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="488dp"
+        android:layout_height="198dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -48,47 +88,6 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-
-
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/tableLayout1"
-            android:layout_width="wrap_content"
-            android:layout_height="138dp"
-            android:layout_gravity="center_horizontal">
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/draw"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/drawBtnText" />
-
-                <Button
-                    android:id="@+id/position"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/positionBtnText" />
-
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/reposition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/repositionBtnText" />
-
-                <Button
-                    android:id="@+id/clear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/clearBtnText" />
-
-            </TableRow>
-
-        </TableLayout>
 
 
     </LinearLayout>
