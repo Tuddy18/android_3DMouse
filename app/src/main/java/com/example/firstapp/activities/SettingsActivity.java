@@ -20,19 +20,12 @@ public class SettingsActivity extends AppCompatActivity{
 
     ColorPicker cp;
 
-    public SettingsActivity() {
-        this.cp = new ColorPicker(SettingsActivity.this, 0, 0, 0);
-    }
-
-    public SettingsActivity(IPointerSettings pointerSettings) {
-        this.pointerSettings = pointerSettings;
-
-    }
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        pointerSettings = (IPointerSettings) getIntent().getSerializableExtra("PointerSettings");
         initColorPicker();
 
         setContentView(R.layout.settings);

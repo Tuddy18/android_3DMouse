@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         pointerRecorder = new PointerRecorder(pointerSettings, BufferManager.getInstance());
         acceleratorEventListener = new AcceleratorEventListener(pointerSettings, pointerRecorder);
         mSensorManager.registerListener(acceleratorEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-        settingsActivity = new SettingsActivity(pointerSettings);
+        settingsActivity = new SettingsActivity();
 
     }
 
@@ -131,7 +131,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.action_settings) {
-            startActivity(new Intent(getApplicationContext(), settingsActivity.getClass()));
+            Intent intent = new Intent(getApplicationContext(), settingsActivity.getClass());
+            intent.putExtra("PointerSettings", pointerSettings);
+            startActivity(intent);
         } else if(item.getItemId() == R.id.action_about) {
             startActivity(new Intent(getApplicationContext(), AboutActivity.class));
         }

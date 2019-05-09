@@ -1,6 +1,8 @@
 package com.example.firstapp.interfaces;
 
-public interface IPointerSettings {
+import java.io.Serializable;
+
+public interface IPointerSettings extends Serializable {
     String getColor();
 
     double getSensibility();
