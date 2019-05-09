@@ -13,4 +13,5 @@
     <string name="positionBtnText">Position</string>
     <string name="repositionBtnText">Reposition</string>
     <string name="drawBtnText">Draw</string>
+    <string name="clearBtnText">Clear All</string>
 </resources>

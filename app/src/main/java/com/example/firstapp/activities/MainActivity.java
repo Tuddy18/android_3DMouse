@@ -104,19 +104,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button repositionButton = findViewById(R.id.reposition);
         repositionButton.setBackground(rounded);
-        repositionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
 
         Button draw = findViewById(R.id.draw);
         draw.setBackground(rounded);
-        draw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+
+        Button clear = findViewById(R.id.clear);
+        clear.setBackground(rounded);
+
 
     }
 
