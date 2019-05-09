@@ -9,9 +9,9 @@
     tools:showIn="@layout/activity_main">
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="488dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -49,12 +49,31 @@
 
         </LinearLayout>
 
-
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <TableLayout
             android:id="@+id/tableLayout1"
             android:layout_width="wrap_content"
-            android:layout_height="138dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/reposition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/repositionBtnText" />
+
+                <Button
+                    android:id="@+id/clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/clearBtnText" />
+
+            </TableRow>
 
             <TableRow>
 
@@ -62,29 +81,17 @@
                     android:id="@+id/draw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/drawBtnText" />
+                    android:text="@string/drawBtnText"
+                    android:layout_margin="10dp"
+                    />
 
                 <Button
                     android:id="@+id/position"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/positionBtnText" />
-
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/reposition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/repositionBtnText" />
-
-                <Button
-                    android:id="@+id/clear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/clearBtnText" />
+                    android:text="@string/positionBtnText"
+                    android:layout_margin="10dp"
+                    />
 
             </TableRow>
 
