@@ -1,5 +1,6 @@
 package com.example.firstapp.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -35,6 +36,8 @@ import com.example.firstapp.pointer.PointerRecorder;
 
 import java.io.IOException;
 
+import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
+
 public class MainActivity extends AppCompatActivity {
 
     public static boolean drawing = false;
@@ -69,17 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
-        /*final TextView textViewX = findViewById(R.id.textViewX);
-        textViewX.setTextColor(Color.LTGRAY);
-        textViewX.setTextSize(16);
-
-        final TextView textViewY = findViewById(R.id.textViewY);
-        textViewY.setTextColor(Color.LTGRAY);
-        textViewY.setTextSize(16);
-
-        final TextView textViewZ = findViewById(R.id.textViewZ);
-        textViewZ.setTextColor(Color.LTGRAY);
-        textViewZ.setTextSize(16);*/
+        final TextView coordinates = findViewById(R.id.coordinates);
+        coordinates.setTextColor(Color.LTGRAY);
+        coordinates.setTextSize(16);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -99,10 +94,6 @@ public class MainActivity extends AppCompatActivity {
         Drawable rounded = getResources().getDrawable(R.drawable.roundedbutton);
         positionButton.setBackground(rounded);
 
-        //textViewX.setText(pointerRecorder.getCurrentPosition().getX() + "");
-        //textViewY.setText(pointerRecorder.getCurrentPosition().getY() + "");
-        //textViewZ.setText(pointerRecorder.getCurrentPosition().getZ() + "");
-
 
         positionButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -110,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     //Pressed
                     pointerRecorder.setIsMoving(true);
+                    coordinates.setText(pointerRecorder.getCurrentPosition().getX() + " " +
+                            pointerRecorder.getCurrentPosition().getY() + " " +
+                            pointerRecorder.getCurrentPosition().getZ());
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     // Released
                     pointerRecorder.setIsMoving(false);
@@ -117,11 +111,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        /*accText.setText(pointerRecorder.getCurrentPosition().getX() + " " +
-                pointerRecorder.getCurrentPosition().getY() + " " +
-                pointerRecorder.getCurrentPosition().getZ());*/
-        //textViewX.setText(pointerRecorder.getCurrentPosition().getX() + "");
 
         Button repositionButton = findViewById(R.id.reposition);
         repositionButton.setBackground(rounded);
@@ -143,25 +132,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);*/
 
         if(item.getItemId() == R.id.action_settings) {
             startActivity(new Intent(getApplicationContext(), settingsActivity.getClass()));

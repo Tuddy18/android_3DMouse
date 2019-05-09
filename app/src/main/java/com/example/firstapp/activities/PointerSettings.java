@@ -8,6 +8,25 @@ public class PointerSettings implements IPointerSettings {
     private double sensibility = 0.8;
     private double granularity = 1.0;
 
+    private int defaultColorR = 0;
+    private int defaultColorG = 0;
+    private int defaultColorB = 0;
+
+    @Override
+    public int getDefaultColorR() {
+        return defaultColorR;
+    }
+
+    @Override
+    public int getDefaultColorG() {
+        return defaultColorG;
+    }
+
+    @Override
+    public int getDefaultColorB() {
+        return defaultColorB;
+    }
+
     @Override
     public String getColor() {
         return color;
